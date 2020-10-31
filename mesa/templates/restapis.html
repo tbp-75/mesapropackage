@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>REST API Catalog</h1>
+    <body>
+        <p>
+            <pre>API works with a sample data set simulating products in an inventory. 
+We can use each endpoint to manipulate this records and test each of them.</pre>
+        </p>
+        <p><pre><strong>Getproducts:</strong> to retrieve current products in catalog.
+            Method: POST
+            URI: /api/Getproducts
+
+            Returns json structure:
+
+            {
+                "products": [
+                  {
+                    "name": "gold",
+                    "price per gm": 60,
+                    "quantity": 700
+                  },
+                  {
+                    "name": "silver",
+                    "price per gm": 23,
+                    "quantity": 1500
+                  }
+                ]
+              }
+
+        </pre></p>
+        <p><pre><strong>Addproducts:</strong> add new products to catalog. It takes a json structure as follows:
+            Method: POST
+            URI: /api/Addproducts
+            Header: Content-Type : application/json
+            Body: JSON
+
+            {
+                "name": "lead",
+                "price per gm": 0.002,
+                "quantity": 2000
+              } 
+            Returns "Product added sucessfully" if transaction is OK.
+        </pre></p>
+        <p><pre><strong>Deleteproducts:</strong> remove products to catalog. </pre>
+        </p>
+        
+    </body>
+    
+{% endblock content %}

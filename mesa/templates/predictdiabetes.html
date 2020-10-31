@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Machine Learning - Diabetes Predictor</h1>
+<body>Please fill parameters below to find out the probability of suffering diabetes:
+    <br>
+    <br>
+</body>
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}            
+            <fieldset class="form-group">
+                        <div class="form-group">
+                            {{form.pregnancies.label(class="form-control-label")}}
+                            {{form.pregnancies(class="form-control", placeholder = form.pregnancies.description)}}                         
+                        </div>
+                        <div class="form-group">
+                            {{form.glucose.label(class="form-control-label")}}
+                            {{form.glucose(class="form-control", placeholder = form.glucose.description)}}                                                
+                        </div>
+                        <div class="form-group">
+                            {{form.bloodpressure.label(class="form-control-label")}} 
+                            {{form.bloodpressure(class="form-control", placeholder = form.bloodpressure.description)}}                            
+                        </div>
+                        <div class="form-group">
+                            {{form.skinthickness.label(class="form-control-label")}}
+                            {{form.skinthickness(class="form-control", placeholder = form.skinthickness.description)}}
+                        </div>
+                        <div class="form-group">
+                            {{form.insulin.label(class="form-control-label")}} 
+                            {{form.insulin(class="form-control", placeholder = form.insulin.description)}}                            
+                        </div>
+                        <div class="form-group">
+                            {{form.bmi.label(class="form-control-label")}}
+                            {{form.bmi(class="form-control", placeholder = form.bmi.description)}}
+                        </div>
+                        <div class="form-group">
+                            {{form.diabetespedigree.label(class="form-control-label")}} 
+                            {{form.diabetespedigree(class="form-control", placeholder = form.diabetespedigree.description)}}                    
+                        </div>
+                        <div class="form-group">
+                            {{form.age.label(class="form-control-label")}}
+                            {{form.age(class="form-control", placeholder = form.age.description)}}
+                        </div>
+                    
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
