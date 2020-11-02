@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Product Catalog</h1>
+    <div class="content-section">
+        {% for table in tables %}                       
+            {{ table|safe }}     
+        {% endfor %}  
+        <div class="form-group">
+            <a href="{{ url_for('addproduct_web')}}">Add</a>            
+            <a href="{{ url_for('editproduct_web')}}">Edit</a>            
+            <a href="{{ url_for('deleteproduct_web')}}">Delete</a>            
+        </div>
+    </div>
+{% endblock content %}

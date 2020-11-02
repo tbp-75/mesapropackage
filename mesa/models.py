@@ -35,3 +35,10 @@ class dataconnector:
         self.data.to_csv(self.file, mode='w', index=False, header=True, decimal='.')
 
         return self.read_data()
+
+    def get_record(self, item):
+        self.data = pd.read_csv(self.file, decimal='.')
+                
+        rec = self.data.query('name == @item')
+
+        return rec

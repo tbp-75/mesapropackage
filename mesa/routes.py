@@ -1,6 +1,6 @@
 
 from flask import render_template, jsonify, request, flash, redirect, url_for
-from mesa.forms import PredictionForm
+from mesa.forms import PredictionForm, ProductsForm
 import pandas as pd
 import numpy as np
 import json
@@ -33,9 +33,89 @@ def about():
 def restapis():
     return render_template('restapis.html', title='REST APIs')
 
+# ============= PRODUCT CATALOG======================================
+# WEB INTERFACE
+@app.route("/Products/Catalog", methods=['GET','POST'])
+def getproductcatalog():
+    catalog = pd.DataFrame(products.read_data())
+    form = ProductsForm()
+ 
+    return render_template('productcatalog.html'
+                            , tables=[catalog.to_html( header = True, index= False)]
+                            , form = form)
+
+
+@app.route("/Products/add", methods=['GET','POST'])
+def addproduct_web():
+    form = ProductsForm()
+
+    # Verify if form contains any data
+    new_product =  [x for x in form.data.values()][:3]
+    notvalid = any(element is None for element in new_product)
+
+    if notvalid:        
+        
+        return render_template('addproduct.html', title = "Add new product", form = form)
+      
+    else:
+                               
+        new_product_df = pd.DataFrame(new_product)
+
+        products.append_data(new_product_df.T)
+        
+        flash(f'{new_product[0]}  added successfully','success')        
+        return redirect(url_for('getproductcatalog'))                           
+        
+ 
+@app.route("/Products/delete", methods=['GET','POST'])
+def deleteproduct_web():
+    form = ProductsForm()
+
+    delete_product =  [x for x in form.data.values()][:3]
+    notvalid = delete_product[0] is None
+
+    if notvalid:
+        
+        return render_template('deleteproduct.html', title = "Delete Products", form = form)
+
+    else:
+        q = delete_product[0]
+        nprod = pd.DataFrame({'name': [q]})
+        products.delete_data(nprod)
+
+        flash(f'{delete_product[0]} removed successfully','success')
+
+        return redirect(url_for('getproductcatalog'))
+
+@app.route("/Products/edit", methods=['GET','POST'])
+def editproduct_web():
+    form = ProductsForm()
+    product = 'gold'
+    item = products.get_record(product)
+
+    # flash(item)
+    # flash(item.name[0])
+    # form.postTitle.data = item
+    # edit_product =  [x for x in form.data.values()][:3]
+    # notvalid = delete_product[0] is None
+
+    # if notvalid:
+        
+    #     return render_template('deleteproduct.html', title = "Delete Products", form = form)
+
+    # else:
+    #     q = delete_product[0]
+    #     nprod = pd.DataFrame({'name': [q]})
+    #     products.delete_data(nprod)
+
+    #     flash(f'{delete_product[0]} removed successfully','success')
+
+    #     return redirect(url_for('getproductcatalog'))
+    return render_template('editproduct.html', title = "Edit Products"
+                , form = form
+                , name = item.name[0])
+
 # API CALLS
-
-
 @app.route("/api/Getproducts", methods=['POST'])
 def getproducts():
     # Load data
