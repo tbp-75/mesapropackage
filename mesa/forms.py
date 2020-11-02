@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+# from flask_table import Table, Col
 from wtforms import IntegerField, FloatField, SubmitField, StringField
-from wtforms.validators import DataRequired, ValidationError, NumberRange, InputRequired
+from wtforms.validators import DataRequired, ValidationError, NumberRange, InputRequired, length
 
 
 class PredictionForm(FlaskForm):
@@ -30,3 +31,12 @@ class PredictionForm(FlaskForm):
 
     
     submit = SubmitField('Predict')
+
+class ProductsForm(FlaskForm):
+    name = StringField("Product", validators=[InputRequired(), length(min=3, max=20)])
+    price_per_gm = FloatField("Price per gm", validators=[NumberRange(min=0, max=1000000)])
+    quantity = IntegerField("Quantity", validators=[NumberRange(min=0, max=1000000)])
+
+    edit = SubmitField('Edit')
+    add = SubmitField('Add')
+    delete = SubmitField('Delete')
