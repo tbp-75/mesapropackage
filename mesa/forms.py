@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 # from flask_table import Table, Col
-from wtforms import IntegerField, FloatField, SubmitField, StringField
+from wtforms import IntegerField, FloatField, SubmitField, StringField, SelectField
 from wtforms.validators import DataRequired, ValidationError, NumberRange, InputRequired, length
 
 
@@ -38,5 +38,7 @@ class ProductsForm(FlaskForm):
     quantity = IntegerField("Quantity", validators=[NumberRange(min=0, max=1000000)])
 
     edit = SubmitField('Edit')
+    search = SubmitField('Search')
     add = SubmitField('Add')
     delete = SubmitField('Delete')
+
