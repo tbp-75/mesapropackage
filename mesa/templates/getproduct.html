@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Get Product</h1>
+<body>Please fill product code to search from catalog:
+    <br>
+    <br>
+</body>
+    <div class="content-section">    
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}            
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{form.name.label(class="form-control-label")}}
+                    {{form.name(class="form-control", placeholder = form.name.description)}}   
+                    
+                </div>                  
+            </fieldset>
+            <div class="form-group">
+                {{ form.search(class="btn btn-outline-info") }}                
+            </div>
+        </form>
+    </div>
+{% endblock content %}

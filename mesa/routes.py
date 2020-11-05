@@ -87,33 +87,49 @@ def deleteproduct_web():
 
         return redirect(url_for('getproductcatalog'))
 
-@app.route("/Products/edit", methods=['GET','POST'])
-def editproduct_web():
+@app.route("/Products/search", methods=['GET','POST'])
+def searchproduct_web():
     form = ProductsForm()
-    product = 'gold'
-    item = products.get_record(product)
 
-    # flash(item)
-    # flash(item.name[0])
-    # form.postTitle.data = item
-    # edit_product =  [x for x in form.data.values()][:3]
-    # notvalid = delete_product[0] is None
+    # Verify if form contains any data
+    search_product =  [x for x in form.data.values()][:3]
+    notvalid = search_product[0] is None
 
-    # if notvalid:
+    if notvalid:        
         
-    #     return render_template('deleteproduct.html', title = "Delete Products", form = form)
+        return render_template('getproduct.html', title = "Search product", form = form)
+      
+    else:
+        # q = search_product[0]
+        # eprod = pd.DataFrame({'name': [q]})
+        # new_product_df = pd.DataFrame(search_product)
+        q = products.get_record(search_product[0])
+        
+        # flash(q)
+        # flash(f'{search_product[0]}  selected successfully','success')        
+        # return render_template('editproduct.html', title = "OK product", form = form, record = q)
+        return redirect(url_for('editproduct_web', record = q))
 
-    # else:
-    #     q = delete_product[0]
-    #     nprod = pd.DataFrame({'name': [q]})
-    #     products.delete_data(nprod)
+@app.route("/Products/edit/<record>", methods=['GET','POST'])
+def editproduct_web(record):
+    form = ProductsForm()
 
-    #     flash(f'{delete_product[0]} removed successfully','success')
+    search_product =  [x for x in form.data.values()][:3]
+    notvalid = search_product[0] is None
+    
+    if notvalid:
+        return render_template('editproduct.html', title = 'Edit product', form = form, record = record)
+    else:
+        sp = pd.DataFrame(search_product, index= ['name','price per gm','quantity'])
+       
+        products.edit_data(sp.T)
+        
+        flash(f'Updated Successfuly {search_product[0]}, Price: {search_product[1]}, Quantity: {search_product[2]}', 'success')
 
-    #     return redirect(url_for('getproductcatalog'))
-    return render_template('editproduct.html', title = "Edit Products"
-                , form = form
-                , name = item.name[0])
+        return redirect(url_for('getproductcatalog'))
+        # return render_template('editproduct.html', title = 'Edit product', form = form, record = record)
+
+        
 
 # API CALLS
 @app.route("/api/Getproducts", methods=['POST'])
