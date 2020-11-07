@@ -110,7 +110,7 @@ def searchproduct_web():
         # return render_template('editproduct.html', title = "OK product", form = form, record = q)
         return redirect(url_for('editproduct_web', record = q))
 
-@app.route("/Products/edit/<record>", methods=['GET','POST'])
+@app.route("/edit/<record>", methods=['GET','POST'])
 def editproduct_web(record):
     form = ProductsForm()
 

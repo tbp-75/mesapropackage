@@ -1,31 +1,28 @@
-{% extends "layout.html" %}
-{% block content %}
-<h1>Add Product</h1>
-<body>Please fill parameters below to add new product to catalog:
-    <br>
-    <br>
-</body>
-    <div class="content-section">    
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}            
-            <fieldset class="form-group">
-                <div class="form-group">
-                    {{form.name.label(class="form-control-label")}}
-                    {{form.name(class="form-control", placeholder = form.name.description)}}   
-                </div>                  
-                <div class="form-group">
-                    {{form.price_per_gm.label(class="form-control-label")}}
-                    {{form.price_per_gm(class="form-control", placeholder = form.price_per_gm.description)}}   
-                </div>    
-                <div class="form-group">
-                    {{form.quantity.label(class="form-control-label")}}
-                    {{form.quantity(class="form-control", placeholder = form.quantity.description)}}   
-                </div>  
+{% extends "layout.html" %} {% block content %}
+<section id="data" class="template-mesa">
+    <h2 class="tm-portfolio-title">ADD <strong>PRODUCT</strong></h2>
 
-            </fieldset>
-            <div class="form-group">
-                {{ form.add(class="btn btn-outline-info") }}                
-            </div>
-        </form>
+    <body>Please fill parameters below to add new product to catalog:</body>
+    <div class="row">
+        <div class="container">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{form.name.label(class="form-control-label")}} {{form.name(class="form-control", placeholder = form.name.description)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.price_per_gm.label(class="form-control-label")}} {{form.price_per_gm(class="form-control", placeholder = form.price_per_gm.description)}}
+                    </div>
+                    <div class="form-group">
+                        {{form.quantity.label(class="form-control-label")}} {{form.quantity(class="form-control", placeholder = form.quantity.description)}}
+                    </div>
+                </fieldset>
+                <div class="row">
+                    {{ form.add(class="btn btn-default smoothScroll tm-view-more-btn") }}
+                </div>
+            </form>
+        </div>
     </div>
+</section>
 {% endblock content %}

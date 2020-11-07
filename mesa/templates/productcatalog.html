@@ -1,14 +1,16 @@
-{% extends "layout.html" %}
-{% block content %}
-<h1>Product Catalog</h1>
-    <div class="content-section">
-        {% for table in tables %}                       
-            {{ table|safe }}     
-        {% endfor %}  
-        <div class="form-group">
-            <a href="{{ url_for('addproduct_web')}}">Add</a>           
-            <a href="{{ url_for('searchproduct_web')}}">Edit</a>           
-            <a href="{{ url_for('deleteproduct_web')}}">Delete</a>            
+{% extends "layout.html" %} {% block content %}
+<section id="data" class="template-mesa">
+    <h2 class="tm-portfolio-title">PRODUCT <strong>CATALOG</strong></h2>
+    <br>
+    <div class="row">
+        <div class="container">
+            {% for table in tables %} {{ table|safe }} {% endfor %}
+            <div class="form-group">
+                <a class="text-uppercase tm-work-h3" href="{{ url_for('addproduct_web')}}">Add</a>
+                <a class="text-uppercase tm-work-h3" href="{{ url_for('searchproduct_web')}}">Edit</a>
+                <a class="text-uppercase tm-work-h3" href="{{ url_for('deleteproduct_web')}}">Delete</a>
+            </div>
         </div>
     </div>
+</section>
 {% endblock content %}
