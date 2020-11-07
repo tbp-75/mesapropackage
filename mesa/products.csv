@@ -1,8 +1,7 @@
 name,price per gm,quantity
-gold,60.0,700
-silver,23.0,1500
+gold,60.0,1300
+silver,24.5,1200
 platinum,78.5,500
 aluminum,0.02,1000
-latinum,0.03,50
-zinc,0.01,350
-copper,0.08,6000
+copper,0.18,300
+led,0.02,500

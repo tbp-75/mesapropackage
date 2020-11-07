@@ -1,22 +1,22 @@
-{% extends "layout.html" %}
-{% block content %}
-<h1>Delete Product</h1>
-<body>Please fill product code to delete from catalog:
-    <br>
-    <br>
-</body>
-    <div class="content-section">    
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}            
-            <fieldset class="form-group">
+{% extends "layout.html" %} {% block content %}
+<section id="data" class="template-mesa">
+    <h2 class="tm-portfolio-title">DELETE <strong>PRODUCT</strong></h2>
+
+    <body>Please fill product code to delete from catalog:</body>
+    <div class="row">
+        <div class="container">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <div class="form-group">
+                        {{form.name.label(class="form-control-label")}} {{form.name(class="form-control", placeholder = form.name.description)}}
+                    </div>
+                </fieldset>
                 <div class="form-group">
-                    {{form.name.label(class="form-control-label")}}
-                    {{form.name(class="form-control", placeholder = form.name.description)}}   
-                </div>                  
-            </fieldset>
-            <div class="form-group">
-                {{ form.delete(class="btn btn-outline-info") }}                
-            </div>
-        </form>
+                    {{ form.delete(class="btn btn-default smoothScroll tm-view-more-btn") }}
+                </div>
+            </form>
+        </div>
     </div>
+</section>
 {% endblock content %}
