@@ -9,13 +9,34 @@
                 {{ form.hidden_tag() }}
                 <fieldset class="form-group">
                     <div class="form-group">
-                        {{form.name.label(class="form-control-label")}} {{form.name(class="form-control", placeholder = form.name.description)}}
+                        {{form.name.label(class="form-control-label")}}
+                        {% if form.name.errors%}
+                            {{ form.name(class="form-control form-control-lg is-invalid") }}
+                            <div class="is-invalid">
+                                {% for error in form.name-errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{form.name(class="form-control", placeholder = form.name.description)}}
+                        {% endif %}
                     </div>
                     <div class="form-group">
-                        {{form.price_per_gm.label(class="form-control-label")}} {{form.price_per_gm(class="form-control", placeholder = form.price_per_gm.description)}}
+                        {{form.price_per_gm.label(class="form-control-label")}}
+                        {% if form.price_per_gm.errors%}
+                            {{ form.price_per_gm(class="form-control form-control-lg is-invalid") }}
+                            <div class="is-invalid">
+                                {% for error in form.name-errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{form.price_per_gm(class="form-control", placeholder = form.price_per_gm.description)}}
+                        {% endif %}
                     </div>
                     <div class="form-group">
-                        {{form.quantity.label(class="form-control-label")}} {{form.quantity(class="form-control", placeholder = form.quantity.description)}}
+                        {{form.quantity.label(class="form-control-label")}}
+                        {{form.quantity(class="form-control", placeholder = form.quantity.description)}}
                     </div>
                 </fieldset>
                 <div class="row">
