@@ -52,7 +52,7 @@ def addproduct_web():
     # Verify if form contains any data
     new_product =  [x for x in form.data.values()][:3]
     notvalid = any(element is None for element in new_product)
-
+    
     if notvalid:        
         
         return render_template('addproduct.html', title = "Add new product", form = form)
